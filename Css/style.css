@@ -363,6 +363,7 @@ section {
 .btn-outline-white {
 	background: transparent;
 	color: var(--white);
+	margin: 5px;
 	padding: 13px 26px;
 	border-radius: 10px;
 	font-size: 15px;
@@ -2779,6 +2780,10 @@ footer { background: #07102a; padding: 56px 5% 32px; border-top: 1px solid rgba(
 	.faq-cols {
 		grid-template-columns: 1fr;
 	}
+
+	.btn-outline-white{
+		margin: 5px;
+	}
 }
 
 @media (max-width: 768px) {
@@ -2817,5 +2822,12 @@ footer { background: #07102a; padding: 56px 5% 32px; border-top: 1px solid rgba(
 	.cat-btn {
 		font-size: 12px;
 		padding: 6px 14px;
+	}
+	.btn-navy{
+		margin: 10px;
+	}
+
+	.btn-outline-white{
+		margin: 5px;
 	}
 }
