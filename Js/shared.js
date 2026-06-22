@@ -140,7 +140,7 @@ function renderFooter() {
 			'</div>' +
 			/* Footer Bottom */
 			'<div class="footer-bottom">' +
-				'<span>&copy; 2025 Miss Amy\'s Daycare. All rights reserved.</span>' +
+				'<span>&copy; 2026 Miss Amy\'s Daycare. All rights reserved.</span>' +
 			'<span>Surrey Quays, SE16 &middot; Ofsted Registered (2514998) &middot; <a href="policies.html" style="color:inherit">Privacy Policy</a></span>' +
 				'<span style="color:rgba(255,255,255,0.2);font-size:11px;">Designed &amp; built by <a href="#" style="color:rgba(200,145,26,0.5);text-decoration:none;" onmouseover="this.style.color=\'#c8911a\'" onmouseout="this.style.color=\'rgba(200,145,26,0.5)\'">Solvvspace</a></span>' +
 			'</div>' +
