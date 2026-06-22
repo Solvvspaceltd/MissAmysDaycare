@@ -274,6 +274,7 @@ nav {
 /* SECTIONS */
 /* ============================================================ */
 
+
 section {
 	padding: 80px 5%;
 }
@@ -290,6 +291,7 @@ section {
 	display: inline-block;
 	margin-bottom: 16px;
 }
+
 
 .section-title {
 	font-size: clamp(26px, 4vw, 40px);
@@ -2162,6 +2164,15 @@ footer { background: #07102a; padding: 56px 5% 32px; border-top: 1px solid rgba(
 	justify-content: center;
 }
 
+.training-img {
+	background: var(--navy);
+	border-radius: 20px;
+	height: ;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .sen-img span {
 	color: rgba(255, 255, 255, 0.3);
 	font-size: 15px;
@@ -2554,6 +2565,7 @@ footer { background: #07102a; padding: 56px 5% 32px; border-top: 1px solid rgba(
 /* ============================================================ */
 /* PROFESSIONAL TRAINING PAGE */
 /* ============================================================ */
+
 
 .training-section {
 	padding: 48px 20px;
