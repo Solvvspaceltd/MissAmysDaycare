@@ -64,18 +64,21 @@ img{display:block;max-width:100%}
 a{color:inherit}
 h1,h2,h3{font-family:Fraunces,Georgia,serif;font-variation-settings:'SOFT' 50,'WONK' 1;font-weight:500;line-height:1.08;letter-spacing:-.015em}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+#start:focus,#start:focus-visible{outline:none}
 
 /* ── the closed book ────────────────────────────────────── */
 .shelf{
-  position:fixed;inset:0;z-index:100;display:grid;place-items:center;
+  position:fixed;inset:0;z-index:100;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:clamp(30px,5vh,52px);
   background:
     radial-gradient(120% 90% at 50% 40%,#1B2545 0%,var(--desk) 68%);
-  perspective:2200px;padding:24px;
+  perspective:2600px;padding:18px;
   transition:opacity .7s ease .55s,visibility .7s ease .55s;
 }
 .shelf.gone{opacity:0;visibility:hidden}
 
-.tome{position:relative;height:min(74vh,600px);aspect-ratio:3/4;max-width:82vw;transform-style:preserve-3d}
+.tome{position:relative;flex:none;height:min(78vh,720px);aspect-ratio:3/4;max-width:86vw;transform-style:preserve-3d}
 .tome::after{ /* the shadow it casts on the desk */
   content:"";position:absolute;left:6%;right:-4%;bottom:-5%;height:9%;
   background:radial-gradient(50% 50% at 50% 50%,rgba(0,0,0,.6),transparent 72%);
@@ -95,7 +98,7 @@ h1,h2,h3{font-family:Fraunces,Georgia,serif;font-variation-settings:'SOFT' 50,'W
   transform-origin:left center;transform:rotateY(0deg);
   transition:transform 1.25s cubic-bezier(.62,.03,.3,1);
   backface-visibility:hidden;
-  display:grid;grid-template-rows:auto 1fr auto;justify-items:center;align-items:center;
+  display:grid;grid-template-rows:auto auto 1fr;justify-items:center;align-items:start;
   padding:min(8%,38px) min(9%,34px);text-align:center;
   border:1px solid rgba(224,160,46,.22);
 }
@@ -104,28 +107,33 @@ h1,h2,h3{font-family:Fraunces,Georgia,serif;font-variation-settings:'SOFT' 50,'W
   content:"";position:absolute;inset:16px 14px 16px 34px;
   border:1px solid rgba(224,160,46,.4);border-radius:3px;pointer-events:none;
 }
-.crest{width:min(31%,108px);align-self:start;padding-top:min(6%,22px);filter:drop-shadow(0 3px 7px rgba(0,0,0,.45))}
+.crest{width:min(30%,150px);align-self:start;padding-top:min(5%,26px);filter:none}
 .front h1{
-  color:var(--gold);font-size:clamp(1.55rem,5.1vw,2.3rem);
+  padding-top:min(7%,34px);color:var(--gold);font-size:clamp(1.65rem,4.4vw,2.9rem);
   font-variation-settings:'SOFT' 30,'WONK' 0;font-weight:600;
   margin:min(5%,22px) 0 10px;text-wrap:balance;
 }
 .motto{
-  font-size:clamp(.5625rem,2vw,.6875rem);letter-spacing:.14em;
+  font-size:clamp(.5938rem,1.5vw,.75rem);letter-spacing:.15em;
   color:rgba(224,160,46,.62);text-transform:uppercase;
 }
 .today{
-  align-self:end;padding-bottom:min(4%,14px);color:rgba(255,255,255,.62);font-size:.8125rem;
+  align-self:end;grid-row:3;padding-bottom:min(4%,18px);color:rgba(255,255,255,.62);font-size:.875rem;
   line-height:1.65;
 }
-.today b{display:block;color:rgba(255,255,255,.88);font-weight:500;font-size:.9375rem}
+.today b{display:block;color:rgba(255,255,255,.9);font-weight:500;font-size:1.0313rem;margin-top:3px}
 .openit{
-  position:absolute;left:50%;bottom:-66px;transform:translateX(-50%);
+  overflow:hidden;position:relative;flex:none;
   background:none;border:1px solid rgba(224,160,46,.5);color:var(--gold);
   font:inherit;font-size:.9375rem;padding:11px 26px;border-radius:999px;
   cursor:pointer;white-space:nowrap;transition:background .25s,border-color .25s;
 }
 .openit:hover{background:rgba(224,160,46,.14);border-color:var(--gold)}
+.openit::after{
+  content:"";position:absolute;left:0;bottom:-1px;height:2px;width:0;
+  background:var(--gold);border-radius:2px;
+}
+.shelf.counting .openit::after{width:100%;transition:width 4s linear}
 .shelf.open .openit{opacity:0;transition:opacity .25s}
 
 /* ── the open book ──────────────────────────────────────── */
@@ -194,18 +202,45 @@ body.opened .book{opacity:1;transform:none;transition:opacity .6s ease .35s,tran
 .btn-pale{border-color:rgba(255,255,255,.35);color:#fff}
 .btn-pale:hover{background:rgba(255,255,255,.1);border-color:#fff}
 
+/* ── the fade: every photograph dissolves into the page ─── */
+.bleed{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bleed img{width:100%;height:100%;object-fit:cover;display:block}
+/* horizontal dissolve, for a photo entering from the left page */
+.bleed-r{
+  -webkit-mask-image:linear-gradient(to right,#000 0 32%,rgba(0,0,0,.9) 44%,rgba(0,0,0,.34) 56%,transparent 68%);
+          mask-image:linear-gradient(to right,#000 0 32%,rgba(0,0,0,.9) 44%,rgba(0,0,0,.34) 56%,transparent 68%);
+}
+/* and for one entering from the right page */
+.bleed-l{
+  -webkit-mask-image:linear-gradient(to left,#000 0 30%,rgba(0,0,0,.88) 43%,rgba(0,0,0,.3) 57%,transparent 70%);
+          mask-image:linear-gradient(to left,#000 0 30%,rgba(0,0,0,.88) 43%,rgba(0,0,0,.3) 57%,transparent 70%);
+}
+/* a wash so type stays legible where it crosses the image */
+.wash{position:absolute;inset:0;z-index:1;pointer-events:none}
+.wash-r{background:linear-gradient(to right,transparent 0 36%,rgba(251,245,233,.3) 48%,rgba(251,245,233,.88) 60%,var(--paper) 70%)}
+.wash-dark{background:linear-gradient(to left,transparent 0 32%,rgba(19,36,80,.5) 46%,rgba(19,36,80,.92) 60%,var(--navy) 70%)}
+.spread > .pg{position:relative;z-index:2}
+
+/* a caption sitting on the photograph itself */
+.overlay{
+  display:flex;flex-direction:column;justify-content:flex-end;
+  color:#fff;text-shadow:0 1px 14px rgba(8,16,38,.75);
+}
+.overlay .chap{color:var(--gold)}
+.overlay h2,.overlay p{color:#fff}
+.overlay::after{color:rgba(255,255,255,.72)!important}
+.setline{
+  font-size:.8125rem;letter-spacing:.07em;color:rgba(255,255,255,.82);
+  text-transform:uppercase;
+}
+
 /* ── title page ─────────────────────────────────────────── */
 .pg-title{display:flex;flex-direction:column;justify-content:center}
 .pg-title h2{font-size:clamp(2.1rem,4.1vw,3.3rem);max-width:13ch;margin-bottom:.4em}
 .pg-title .stand{font-size:clamp(1.0313rem,1.15vw,1.125rem);max-width:44ch;color:var(--ink-soft)}
-.frontis{counter-increment:none;padding:0!important;position:relative;overflow:hidden;background:var(--paper-edge)}
-.frontis::after{display:none}
-.frontis img{width:100%;height:100%;object-fit:cover;min-height:460px}
-.frontis figcaption{
-  position:absolute;left:0;right:0;bottom:0;padding:70px 26px 22px;
-  background:linear-gradient(transparent,rgba(11,23,51,.8));color:rgba(255,255,255,.9);
-  font-size:.8125rem;letter-spacing:.06em;
-}
+.sp-hero{min-height:min(78vh,700px)}
+.sp-hero .pg.overlay{counter-increment:none;padding-bottom:clamp(30px,4vw,50px)}
+.sp-hero .pg.overlay::after{display:none}
 .marks{display:flex;gap:clamp(20px,2.6vw,42px);flex-wrap:wrap;margin:32px 0 30px;
   padding-top:24px;border-top:1px solid var(--rule)}
 .marks b{font-family:Fraunces,serif;font-weight:500;font-size:1.5rem;display:block;color:var(--navy);line-height:1}
@@ -226,24 +261,36 @@ body.opened .book{opacity:1;transform:none;transition:opacity .6s ease .35s,tran
 .toc .n{font-size:.8125rem;color:var(--ink-soft);font-variant-numeric:tabular-nums}
 
 /* ── plates (photographs) ───────────────────────────────── */
-.plates{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,1vw,14px);margin-top:28px}
-.plate{margin:0;position:relative;overflow:hidden;border-radius:2px;background:var(--paper-edge)}
+.plates{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:22px;
+  -webkit-mask-image:
+    linear-gradient(to right,transparent 0,#000 8%,#000 92%,transparent 100%),
+    linear-gradient(to bottom,#000 0 70%,rgba(0,0,0,.35) 90%,transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-image:
+    linear-gradient(to right,transparent 0,#000 8%,#000 92%,transparent 100%),
+    linear-gradient(to bottom,#000 0 70%,rgba(0,0,0,.35) 90%,transparent 100%);
+  mask-composite:intersect;
+}
+.plate{margin:0;position:relative;overflow:hidden;background:transparent}
+
 .plate:first-child{grid-column:span 2;grid-row:span 2}
 .plate img{width:100%;height:100%;object-fit:cover;aspect-ratio:1}
 .plate:first-child img{aspect-ratio:1}
 .plates figcaption{
-  position:absolute;left:0;right:0;bottom:0;padding:22px 14px 11px;
-  background:linear-gradient(transparent,rgba(11,23,51,.82));
-  color:#fff;font-size:.8125rem;
+  position:absolute;left:0;right:0;bottom:14%;text-align:center;
+  color:#fff;font-size:.8125rem;letter-spacing:.06em;
+  text-shadow:0 1px 12px rgba(8,16,38,.9);
 }
 .plate-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
-  gap:18px;margin-top:20px}
+  gap:18px;margin-top:4px}
 .plate-note{font-size:.8125rem;color:var(--ink-soft);font-style:italic;margin:0}
 
 /* ── about ──────────────────────────────────────────────── */
-.portrait{counter-increment:none;padding:0!important;position:relative;overflow:hidden;background:var(--paper-edge)}
-.portrait::after{display:none}
-.portrait img{width:100%;height:100%;object-fit:cover;min-height:520px}
+.sp-amy{min-height:min(76vh,760px)}
+.sp-amy .bleed img{object-position:center 22%}
+.sp-amy .pg.overlay{counter-increment:none;padding-bottom:clamp(30px,4vw,50px)}
+.sp-amy .pg.overlay::after{display:none}
 .creds{list-style:none;margin-top:26px;border-top:1px solid var(--rule)}
 .creds li{padding:13px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:baseline}
 .creds b{font-weight:600;font-size:.9375rem;color:var(--ink)}
@@ -251,7 +298,8 @@ body.opened .book{opacity:1;transform:none;transition:opacity .6s ease .35s,tran
 .creds i{width:7px;height:7px;border-radius:50%;background:var(--gold);display:block;transform:translateY(-2px)}
 
 /* ── a dark leaf, for the SEN chapter ───────────────────── */
-.sp-dark{background:var(--navy);color:#fff}
+.sp-dark{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.sp-dark .bleed img{opacity:.5}
 .sp-dark::before{background:linear-gradient(90deg,transparent,rgba(0,0,0,.34) 48%,rgba(0,0,0,.38) 50%,rgba(0,0,0,.26) 56%,transparent)}
 .sp-dark .pg::after{color:rgba(255,255,255,.4)}
 .sp-dark .chap{color:var(--gold)}
@@ -365,6 +413,27 @@ body.opened .wa{opacity:1;pointer-events:auto}
 /* ── responsive ─────────────────────────────────────────── */
 @media (max-width:900px){
   .spread{grid-template-columns:1fr}
+  .sp-hero,.sp-amy{min-height:0}
+  .sp-hero .bleed,.sp-amy .bleed,.sp-dark .bleed{
+    position:relative;grid-column:1;height:clamp(300px,52vw,460px);
+    -webkit-mask-image:linear-gradient(#000 0 62%,rgba(0,0,0,.5) 84%,transparent 100%);
+            mask-image:linear-gradient(#000 0 62%,rgba(0,0,0,.5) 84%,transparent 100%);
+  }
+  .sp-hero .wash,.sp-amy .wash{
+    position:absolute;top:0;height:clamp(300px,52vw,460px);
+    background:linear-gradient(transparent 0 46%,rgba(251,245,233,.15) 70%,rgba(251,245,233,.75) 90%,var(--paper))
+  }
+  .sp-dark .wash{
+    position:absolute;top:0;height:clamp(300px,52vw,460px);
+    background:linear-gradient(transparent 0 42%,rgba(19,36,80,.5) 70%,rgba(19,36,80,.9) 90%,var(--navy))
+  }
+  .sp-hero .pg.overlay,.sp-amy .pg.overlay{
+    position:absolute;top:0;height:clamp(300px,52vw,460px);width:100%;
+    padding-bottom:clamp(96px,24vw,160px)!important;border:none!important;
+  }
+  .plate img{-webkit-mask-image:none;mask-image:none}
+  .plates{gap:6px;-webkit-mask-image:none;mask-image:none}
+  .plates figcaption{bottom:8px;left:8px;right:8px;text-align:left}
   .spread::before{display:none}
   .pg{padding:clamp(34px,5vw,54px) clamp(24px,5vw,46px) clamp(44px,5vw,54px)!important}
   .pg:first-child::after,.pg:last-child::after,.pg.wide::after{
@@ -381,7 +450,7 @@ body.opened .wa{opacity:1;pointer-events:auto}
 }
 @media (max-width:560px){
   .book{border-radius:2px;margin-inline:8px}
-  .openit{bottom:-58px;font-size:.875rem;padding:10px 20px}
+  .openit{font-size:.875rem;padding:10px 20px}
   .ribbon{right:12px;font-size:.8125rem;padding:13px 14px 17px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -404,8 +473,8 @@ body.opened .wa{opacity:1;pointer-events:auto}
       </div>
       <p class="today">Surrey Quays, SE16<br><b id="today">&nbsp;</b></p>
     </div>
-    <button class="openit" id="openit">Open the book</button>
   </div>
+  <button class="openit" id="openit">Open the book</button>
 </div>
 
 <header class="runhead">
@@ -429,12 +498,14 @@ body.opened .wa{opacity:1;pointer-events:auto}
 <!-- ══ the open book ════════════════════════════════════ -->
 <main class="book" id="book">
 
-  <!-- spread i · frontispiece + title page -->
-  <section class="spread">
-    <figure class="pg frontis">
-      <img src="Img/IMG-23.jpg" alt="Children exploring outdoors with Miss Amy's Daycare">
-      <figcaption>Surrey Quays, SE16 &middot; Ofsted URN 2514998</figcaption>
-    </figure>
+  <!-- spread i · the photograph fades into the title -->
+  <section class="spread sp-hero">
+    <div class="bleed bleed-r"><img src="Img/IMG-3.jpg" alt="Children at play in the living space at Miss Amy's Daycare"></div>
+    <div class="wash wash-r"></div>
+    <div class="pg overlay">
+      <p class="setline">Surrey Quays, SE16</p>
+      <p class="setline" style="opacity:.7;margin-top:6px">Ofsted URN 2514998</p>
+    </div>
     <div class="pg pg-title" id="start">
       <h2>Where little ones learn, grow and belong</h2>
       <p class="stand">A warm, Ofsted-registered early years setting in Surrey Quays offering nurturing childcare and education for children from birth to school age.</p>
@@ -444,7 +515,7 @@ body.opened .wa{opacity:1;pointer-events:auto}
         <div><b>SEN</b><span>Inclusive setting</span></div>
       </div>
       <p><a class="btn btn-gold" href="waiting-list.html">Join the waiting list</a></p>
-      <p class="avail"><span class="pip"></span>Spaces available &mdash; September intake open</p>
+      <p class="avail"><span class="pip"></span>January spaces available</p>
     </div>
   </section>
 
@@ -487,10 +558,12 @@ body.opened .wa{opacity:1;pointer-events:auto}
   </section>
 
   <!-- spread iv · Miss Amy -->
-  <section class="spread">
-    <figure class="pg portrait">
-      <img src="Img/missamy.jpg" alt="Miss Amy at her setting in Surrey Quays" loading="lazy">
-    </figure>
+  <section class="spread sp-amy">
+    <div class="bleed bleed-r"><img src="Img/missamy.jpg" alt="Miss Amy at her setting in Surrey Quays" loading="lazy"></div>
+    <div class="wash wash-r"></div>
+    <div class="pg overlay">
+      <p class="setline">Miss Amy</p>
+    </div>
     <div class="pg">
       <span class="chap">Chapter two</span>
       <h2>A trusted name in Surrey Quays childcare</h2>
@@ -510,6 +583,8 @@ body.opened .wa{opacity:1;pointer-events:auto}
 
   <!-- spread v · additional needs -->
   <section class="spread sp-dark">
+    <div class="bleed bleed-l"><img src="Img/IMG-20.jpg" alt="" loading="lazy" aria-hidden="true"></div>
+    <div class="wash wash-dark"></div>
     <div class="pg">
       <span class="chap">Chapter three</span>
       <h2>Specialist care for children with additional needs</h2>
@@ -641,17 +716,20 @@ body.opened .wa{opacity:1;pointer-events:auto}
     new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 
   var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var timer;
 
   function open(){
     if(body.classList.contains('opened')) return;
+    clearTimeout(timer);
+    shelf.classList.remove('counting');
     shelf.classList.add('open');
     body.classList.remove('shut');
     body.classList.add('opened');
     setTimeout(function(){
       shelf.classList.add('gone');
-      document.getElementById('start').setAttribute('tabindex','-1');
-      document.getElementById('start').focus({preventScroll:true});
-    }, calm ? 0 : 900);
+      var s1 = document.getElementById('start');
+      s1.setAttribute('tabindex','-1'); s1.focus({preventScroll:true});
+    }, calm ? 0 : 950);
   }
 
   btn.addEventListener('click', open);
@@ -661,11 +739,15 @@ body.opened .wa{opacity:1;pointer-events:auto}
       e.preventDefault(); open();
     }
   });
-  // anyone who scrolls or arrives at an anchor has already decided
   window.addEventListener('wheel', open, {passive:true, once:true});
   window.addEventListener('touchmove', open, {passive:true, once:true});
-  if(location.hash) open();
-  if(calm) open();
+
+  if(location.hash || calm){ open(); }
+  else {
+    // the book opens itself; the gold line under the button shows it coming
+    requestAnimationFrame(function(){ shelf.classList.add('counting'); });
+    timer = setTimeout(open, 4000);
+  }
 })();
 </script>
 </body>
