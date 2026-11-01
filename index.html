@@ -11,6 +11,7 @@
 <meta property="og:url" content="https://missamysdaycare.co.uk/">
 <meta property="og:image" content="https://missamysdaycare.co.uk/Img/MISSAMY_LOGO.png">
 <meta name="theme-color" content="#0B1733">
+<script>document.documentElement.className+=" js";</script>
 <link rel="canonical" href="https://missamysdaycare.co.uk/">
 <link rel="icon" href="Img/favicon_missamy.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,6 +61,14 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 body.shut{overflow:hidden}
+.js body{overflow:hidden}
+html:not(.js) body,html:not(.js) body.shut{overflow:auto}
+html:not(.js) .shelf,html:not(.js) .bookbar,
+html:not(.js) .turner,html:not(.js) .hint{display:none!important}
+html:not(.js) .book{height:auto;min-height:0;opacity:1;transform:none}
+html:not(.js) .spread{opacity:1;visibility:visible}
+html:not(.js) .runhead{opacity:1;transform:none;pointer-events:auto}
+html:not(.js) .ribbon{opacity:1;pointer-events:auto}
 img{display:block;max-width:100%}
 a{color:inherit}
 h1,h2,h3{font-family:Fraunces,Georgia,serif;font-variation-settings:'SOFT' 50,'WONK' 1;font-weight:500;line-height:1.08;letter-spacing:-.015em}
@@ -76,7 +85,7 @@ h1,h2,h3{font-family:Fraunces,Georgia,serif;font-variation-settings:'SOFT' 50,'W
   perspective:2600px;padding:18px;
   transition:opacity .7s ease .55s,visibility .7s ease .55s;
 }
-.shelf.gone{opacity:0;visibility:hidden}
+.shelf.gone{opacity:0;visibility:hidden;pointer-events:none}
 
 .tome{position:relative;flex:none;height:min(78vh,720px);aspect-ratio:3/4;max-width:86vw;transform-style:preserve-3d}
 .tome::after{ /* the shadow it casts on the desk */
@@ -102,6 +111,7 @@ h1,h2,h3{font-family:Fraunces,Georgia,serif;font-variation-settings:'SOFT' 50,'W
   padding:min(8%,38px) min(9%,34px);text-align:center;
   border:1px solid rgba(224,160,46,.22);
 }
+.shelf.open{pointer-events:none}
 .shelf.open .front{transform:rotateY(-158deg)}
 .front::before{ /* gold rule frame, foil-stamped */
   content:"";position:absolute;inset:16px 14px 16px 34px;
@@ -138,7 +148,7 @@ h1,h2,h3{font-family:Fraunces,Georgia,serif;font-variation-settings:'SOFT' 50,'W
 
 /* ── the open book ──────────────────────────────────────── */
 .book{
-  width:var(--page);margin:clamp(70px,8vw,96px) auto clamp(20px,4vw,52px);
+  width:var(--page);margin:clamp(66px,7vw,80px) auto clamp(14px,2vh,20px);
   background:var(--paper);
   border-radius:3px 8px 8px 3px;
   box-shadow:
@@ -211,14 +221,9 @@ body.opened .book{opacity:1;transform:none;transition:opacity .6s ease .35s,tran
           mask-image:linear-gradient(to right,#000 0 32%,rgba(0,0,0,.9) 44%,rgba(0,0,0,.34) 56%,transparent 68%);
 }
 /* and for one entering from the right page */
-.bleed-l{
-  -webkit-mask-image:linear-gradient(to left,#000 0 30%,rgba(0,0,0,.88) 43%,rgba(0,0,0,.3) 57%,transparent 70%);
-          mask-image:linear-gradient(to left,#000 0 30%,rgba(0,0,0,.88) 43%,rgba(0,0,0,.3) 57%,transparent 70%);
-}
 /* a wash so type stays legible where it crosses the image */
 .wash{position:absolute;inset:0;z-index:1;pointer-events:none}
 .wash-r{background:linear-gradient(to right,transparent 0 36%,rgba(251,245,233,.3) 48%,rgba(251,245,233,.88) 60%,var(--paper) 70%)}
-.wash-dark{background:linear-gradient(to left,transparent 0 32%,rgba(19,36,80,.5) 46%,rgba(19,36,80,.92) 60%,var(--navy) 70%)}
 .spread > .pg{position:relative;z-index:2}
 
 /* a caption sitting on the photograph itself */
@@ -287,10 +292,32 @@ body.opened .book{opacity:1;transform:none;transition:opacity .6s ease .35s,tran
 .plate-note{font-size:.8125rem;color:var(--ink-soft);font-style:italic;margin:0}
 
 /* ── about ──────────────────────────────────────────────── */
-.sp-amy{min-height:min(76vh,760px)}
-.sp-amy .bleed img{object-position:center 22%}
-.sp-amy .pg.overlay{counter-increment:none;padding-bottom:clamp(30px,4vw,50px)}
-.sp-amy .pg.overlay::after{display:none}
+.bleed-full{-webkit-mask-image:none;mask-image:none}
+.sp-amy{min-height:min(80vh,780px);background:var(--navy-deep)}
+.sp-amy .bleed img{object-position:30% 20%}
+.scrim-amy{background:
+  linear-gradient(to right,rgba(9,18,44,0) 0%,rgba(9,18,44,.12) 26%,rgba(11,23,51,.62) 44%,
+    rgba(11,23,51,.9) 56%,rgba(11,23,51,.95) 100%),
+  linear-gradient(to top,rgba(9,18,44,.72),rgba(9,18,44,.04) 46%)}
+.sp-amy .pg::after{color:rgba(255,255,255,.45)}
+.pg-amy-l{justify-content:flex-start}
+.pg-amy-l h2{max-width:12ch;font-size:clamp(1.8rem,3.1vw,2.7rem)}
+.pg-amy-r{justify-content:center;padding-top:clamp(26px,3vw,44px);padding-bottom:clamp(26px,3vw,44px)}
+.pg-amy-r p{color:rgba(255,255,255,.8)}
+.sp-amy .creds{
+  margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(16px,2vw,28px);
+  border-top-color:rgba(255,255,255,.2);margin-top:22px;
+}
+.sp-amy .creds li{
+  padding:9px 0;border-bottom-color:rgba(255,255,255,.14);
+  grid-template-columns:auto 1fr;align-items:start;
+}
+.sp-amy .creds li:last-child{grid-column:1 / -1}
+.sp-amy .creds b{display:block;font-size:.875rem}
+.sp-amy .creds span{display:block;font-size:.8125rem;margin-top:2px;line-height:1.45}
+.sp-amy .creds i{margin-top:6px}
+.sp-amy .creds b{color:#fff}
+.sp-amy .creds span{color:rgba(255,255,255,.66)}
 .creds{list-style:none;margin-top:26px;border-top:1px solid var(--rule)}
 .creds li{padding:13px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:baseline}
 .creds b{font-weight:600;font-size:.9375rem;color:var(--ink)}
@@ -299,7 +326,6 @@ body.opened .book{opacity:1;transform:none;transition:opacity .6s ease .35s,tran
 
 /* ── a dark leaf, for the SEN chapter ───────────────────── */
 .sp-dark{background:var(--navy);color:#fff;position:relative;overflow:hidden}
-.sp-dark .bleed img{opacity:.5}
 .sp-dark::before{background:linear-gradient(90deg,transparent,rgba(0,0,0,.34) 48%,rgba(0,0,0,.38) 50%,rgba(0,0,0,.26) 56%,transparent)}
 .sp-dark .pg::after{color:rgba(255,255,255,.4)}
 .sp-dark .chap{color:var(--gold)}
@@ -358,6 +384,113 @@ body.opened .book{opacity:1;transform:none;transition:opacity .6s ease .35s,tran
   font-size:.7812rem;color:rgba(255,255,255,.42);display:flex;flex-wrap:wrap;gap:8px 22px}
 .imprint a{color:rgba(255,255,255,.56)}
 
+
+/* ── paged book: one spread at a time, turned not scrolled ── */
+.js .book{
+  height:calc(100dvh - 54px - clamp(84px,11vh,104px));
+  min-height:430px;overflow:hidden;
+}
+.js .stack{position:relative;height:100%;overflow:hidden;border-radius:inherit;
+  perspective:2400px;transform-style:flat}
+.js .spread{
+  position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;
+  opacity:0;visibility:hidden;border-top:none!important;
+  -webkit-overflow-scrolling:touch;scrollbar-width:thin;
+  scrollbar-color:rgba(36,31,26,.26) transparent;
+}
+.js .spread::-webkit-scrollbar{width:7px}
+.js .spread::-webkit-scrollbar-thumb{background:rgba(36,31,26,.24);border-radius:4px}
+.js .sp-dark::-webkit-scrollbar-thumb,.js .sp-end::-webkit-scrollbar-thumb,
+.js .sp-amy::-webkit-scrollbar-thumb{background:rgba(255,255,255,.26)}
+.js .spread.on{opacity:1;visibility:visible;z-index:1}
+.spread{--fade:var(--paper)}
+.sp-dark{--fade:var(--navy)}
+.sp-end{--fade:var(--navy-deep)}
+.sp-amy{--fade:#0C1733}
+.sp-gold{--fade:#EFDCB4}
+.hint{
+  position:absolute;left:0;right:0;bottom:0;height:58px;z-index:7;
+  pointer-events:none;opacity:0;transition:opacity .3s;
+  background:linear-gradient(transparent,var(--fade));
+}
+.hint.on{opacity:1}
+.hint span{
+  position:absolute;left:50%;bottom:9px;transform:translateX(-50%);
+  width:22px;height:22px;border-right:1.5px solid currentColor;
+  border-bottom:1.5px solid currentColor;rotate:45deg;opacity:.3;
+  animation:nudge 1.9s ease-in-out infinite;
+}
+@keyframes nudge{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-5px)}}
+.sp-dark .hint span,.sp-end .hint span,.sp-amy .hint span{color:#fff}
+.js .spread.on.fade{animation:leafin .34s ease both}
+@keyframes leafin{from{opacity:0}to{opacity:1}}
+.js .sp-hero,.js .sp-amy{min-height:0}
+
+/* the leaf that sweeps across as a page turns */
+.turner{
+  position:absolute;top:0;width:50%;height:100%;z-index:6;
+  transform-style:preserve-3d;pointer-events:none;visibility:hidden;
+}
+.turner.fwd{left:50%;transform-origin:left center}
+.turner.bwd{left:0;transform-origin:right center}
+.turner.go{visibility:visible}
+.tface{position:absolute;inset:0;backface-visibility:hidden;background:var(--paper)}
+.tfront{
+  background:linear-gradient(to right,rgba(36,31,26,.16),rgba(36,31,26,.03) 16%,var(--paper) 42%);
+  box-shadow:4px 0 22px rgba(0,0,0,.22);
+}
+.tback{
+  transform:rotateY(180deg);
+  background:linear-gradient(to right,var(--paper) 58%,rgba(36,31,26,.05) 86%,rgba(36,31,26,.15));
+  box-shadow:-4px 0 22px rgba(0,0,0,.22);
+}
+
+/* ── the page bar ── */
+.bookbar{
+  display:none;width:var(--page);margin:0 auto clamp(12px,2vh,22px);
+  align-items:center;gap:clamp(10px,2vw,20px);
+  color:rgba(255,255,255,.72);font-size:.875rem;
+}
+.js body.opened .bookbar,.js .bookbar{display:flex}
+.turnbtn{
+  flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);
+  color:#fff;cursor:pointer;font:inherit;transition:background .2s,border-color .2s,opacity .2s;
+}
+.turnbtn:hover:not(:disabled){background:rgba(224,160,46,.2);border-color:var(--gold)}
+.turnbtn:disabled{opacity:.28;cursor:default}
+.turnbtn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round}
+.barmid{flex:1;min-width:0;display:flex;align-items:center;gap:14px}
+.barname{
+  font-family:Fraunces,serif;font-size:1.0625rem;color:#fff;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.barfolio{margin-left:auto;font-variant-numeric:tabular-nums;white-space:nowrap;
+  color:rgba(255,255,255,.55);font-size:.8125rem}
+.dots{display:flex;gap:7px;flex:none}
+.dots button{
+  width:9px;height:9px;padding:0;border-radius:50%;cursor:pointer;
+  background:rgba(255,255,255,.26);border:none;transition:background .2s,transform .2s;
+}
+.dots button:hover{background:rgba(255,255,255,.55);transform:scale(1.25)}
+.dots button[aria-current="true"]{background:var(--gold);transform:scale(1.3)}
+
+@media (max-width:900px){
+  .js .book{height:calc(100dvh - 54px - clamp(78px,10vh,96px))}
+  .turner{display:none}
+  .barname{font-size:.9375rem}
+  .dots{display:none}
+}
+@media (max-width:560px){
+  .turnbtn{width:42px;height:42px}
+  .bookbar{gap:10px;font-size:.8125rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .turner{display:none!important}
+  .js .spread.on.fade{animation:none}
+}
+
 /* ── running head: the book's navigation ──────────────── */
 .runhead{
   position:fixed;top:0;left:0;right:0;z-index:38;
@@ -402,35 +535,46 @@ body.opened .ribbon{opacity:1;pointer-events:auto}
 .ribbon:hover{transform:translateY(3px)}
 
 .wa{
-  position:fixed;right:18px;bottom:18px;z-index:40;width:54px;height:54px;border-radius:50%;
-  background:#25D366;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.4);
-  opacity:0;pointer-events:none;transition:opacity .4s ease .9s,transform .2s;
+  flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;
+  background:#25D366;margin-left:4px;transition:transform .18s;
 }
-body.opened .wa{opacity:1;pointer-events:auto}
-.wa:hover{transform:scale(1.07)}
-.wa svg{width:27px;height:27px;fill:#fff}
+.wa:hover{transform:scale(1.09)}
+.wa svg{width:19px;height:19px;fill:#fff}
 
 /* ── responsive ─────────────────────────────────────────── */
 @media (max-width:900px){
   .spread{grid-template-columns:1fr}
   .sp-hero,.sp-amy{min-height:0}
-  .sp-hero .bleed,.sp-amy .bleed,.sp-dark .bleed{
+  .sp-hero .bleed{
     position:relative;grid-column:1;height:clamp(300px,52vw,460px);
     -webkit-mask-image:linear-gradient(#000 0 62%,rgba(0,0,0,.5) 84%,transparent 100%);
             mask-image:linear-gradient(#000 0 62%,rgba(0,0,0,.5) 84%,transparent 100%);
   }
-  .sp-hero .wash,.sp-amy .wash{
+  .sp-hero .wash{
     position:absolute;top:0;height:clamp(300px,52vw,460px);
     background:linear-gradient(transparent 0 46%,rgba(251,245,233,.15) 70%,rgba(251,245,233,.75) 90%,var(--paper))
   }
-  .sp-dark .wash{
-    position:absolute;top:0;height:clamp(300px,52vw,460px);
-    background:linear-gradient(transparent 0 42%,rgba(19,36,80,.5) 70%,rgba(19,36,80,.9) 90%,var(--navy))
-  }
-  .sp-hero .pg.overlay,.sp-amy .pg.overlay{
+  .sp-hero .pg.overlay{
     position:absolute;top:0;height:clamp(300px,52vw,460px);width:100%;
     padding-bottom:clamp(96px,24vw,160px)!important;border:none!important;
   }
+  /* chapter two keeps its full-bleed photograph, text stacked over it */
+  /* the photograph becomes a band at the head of the chapter; the body
+     sits on solid navy below it, because long text over a picture
+     does not hold up at this width */
+  .sp-amy{--band:clamp(330px,66vw,430px)}
+  .sp-amy .bleed{height:var(--band);bottom:auto}
+  .sp-amy .bleed img{object-position:50% 16%}
+  .sp-amy .scrim-amy{
+    height:var(--band);bottom:auto;
+    background:linear-gradient(to bottom,rgba(9,18,44,.12) 0%,rgba(9,18,44,.42) 40%,
+      rgba(11,23,51,.9) 84%,var(--navy-deep) 100%);
+  }
+  .sp-amy .pg{position:relative;border-top:none!important}
+  .pg-amy-l{padding-top:clamp(170px,44vw,260px)!important;padding-bottom:0!important}
+  .pg-amy-r{padding-top:18px!important}
+  .sp-amy .creds{grid-template-columns:1fr}
+  .sp-amy .creds li:last-child{grid-column:auto}
   .plate img{-webkit-mask-image:none;mask-image:none}
   .plates{gap:6px;-webkit-mask-image:none;mask-image:none}
   .plates figcaption{bottom:8px;left:8px;right:8px;text-align:left}
@@ -491,12 +635,16 @@ body.opened .wa{opacity:1;pointer-events:auto}
     <a href="professional-training.html">Training</a>
     <a href="policies.html">Policies</a>
   </nav>
+  <a class="wa" href="https://wa.me/447502312859" target="_blank" rel="noopener" aria-label="Message Miss Amy on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15s-.77.96-.94 1.16c-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.03 1.02-1.03 2.48s1.06 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.88 9.89m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.004c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.42"/></svg>
+  </a>
 </header>
 
 <a class="ribbon" href="waiting-list.html">Waiting list</a>
 
 <!-- ══ the open book ════════════════════════════════════ -->
 <main class="book" id="book">
+  <div class="stack" id="stack">
 
   <!-- spread i · the photograph fades into the title -->
   <section class="spread sp-hero">
@@ -559,14 +707,13 @@ body.opened .wa{opacity:1;pointer-events:auto}
 
   <!-- spread iv · Miss Amy -->
   <section class="spread sp-amy">
-    <div class="bleed bleed-r"><img src="Img/missamy.jpg" alt="Miss Amy at her setting in Surrey Quays" loading="lazy"></div>
-    <div class="wash wash-r"></div>
-    <div class="pg overlay">
-      <p class="setline">Miss Amy</p>
-    </div>
-    <div class="pg">
+    <div class="bleed bleed-full"><img src="Img/missamy.jpg" alt="Miss Amy at her setting in Surrey Quays" loading="lazy"></div>
+    <div class="wash scrim-amy"></div>
+    <div class="pg overlay pg-amy-l">
       <span class="chap">Chapter two</span>
       <h2>A trusted name in Surrey Quays childcare</h2>
+    </div>
+    <div class="pg overlay pg-amy-r">
       <p>Miss Amy&rsquo;s Daycare is a professional, Ofsted-registered early years setting in Surrey Quays, SE16. Miss Amy provides a safe, stimulating and deeply nurturing environment where every child is seen, valued and supported.</p>
       <p>Rooted in the EYFS framework, with specialist experience supporting children with additional needs, including non-verbal and limited speech. Miss Amy&rsquo;s approach is always personal, always intentional.</p>
       <p>Her long-term vision is to grow from a highly regarded childminding setting into a fully registered early years prep school raising the standard of early education in the community.</p>
@@ -577,14 +724,12 @@ body.opened .wa{opacity:1;pointer-events:auto}
         <li><i></i><div><b>SEN Specialist</b> <span>Non-verbal and additional needs expertise</span></div></li>
         <li><i></i><div><b>Ofsted Registered</b> <span>DBS cleared, fully compliant setting. URN 2514998</span></div></li>
       </ul>
-      <p style="margin-top:26px"><a class="btn btn-ink" href="about.html">Meet Miss Amy</a></p>
+      <p style="margin-top:26px"><a class="btn btn-pale" href="about.html">Meet Miss Amy</a></p>
     </div>
   </section>
 
   <!-- spread v · additional needs -->
   <section class="spread sp-dark">
-    <div class="bleed bleed-l"><img src="Img/IMG-20.jpg" alt="" loading="lazy" aria-hidden="true"></div>
-    <div class="wash wash-dark"></div>
     <div class="pg">
       <span class="chap">Chapter three</span>
       <h2>Specialist care for children with additional needs</h2>
@@ -700,24 +845,153 @@ body.opened .wa{opacity:1;pointer-events:auto}
     </div>
   </section>
 
+    <div class="turner" id="turner" aria-hidden="true">
+      <div class="tface tfront"></div><div class="tface tback"></div>
+    </div>
+    <div class="hint" id="hint" aria-hidden="true"><span></span></div>
+  </div>
 </main>
 
-<a class="wa" href="https://wa.me/447502312859" target="_blank" rel="noopener" aria-label="Message Miss Amy on WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15s-.77.96-.94 1.16c-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.03 1.02-1.03 2.48s1.06 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.88 9.89m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.004c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.42"/></svg>
-</a>
+<div class="bookbar" id="bookbar">
+  <button class="turnbtn" id="prev" aria-label="Previous page">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <div class="barmid">
+    <span class="barname" id="barname"></span>
+    <div class="dots" id="dots" role="tablist" aria-label="Chapters"></div>
+    <span class="barfolio" id="barfolio"></span>
+  </div>
+  <button class="turnbtn" id="next" aria-label="Next page">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+  </button>
+</div>
+
 
 <script>
 (function(){
   var shelf=document.getElementById('shelf'),
       btn=document.getElementById('openit'),
-      body=document.body;
+      body=document.body,
+      stack=document.getElementById('stack'),
+      turner=document.getElementById('turner'),
+      leaves=[].slice.call(stack.querySelectorAll('.spread')),
+      prev=document.getElementById('prev'), next=document.getElementById('next'),
+      barname=document.getElementById('barname'), barfolio=document.getElementById('barfolio'),
+      dots=document.getElementById('dots'),
+      calm=window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+      narrow=function(){ return window.matchMedia('(max-width:900px)').matches; },
+      at=0, busy=false, timer;
 
   document.getElementById('today').textContent =
     new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 
-  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var timer;
+  /* ── chapter names, read off each spread ─────────────────── */
+  var names = leaves.map(function(l,i){
+    var h = l.querySelector('h2'), c = l.querySelector('.chap');
+    if(i===0) return 'Title page';
+    return (h ? h.textContent : (c ? c.textContent : 'Page')).replace(/\s+/g,' ').trim();
+  });
 
+  names.forEach(function(n,i){
+    var d=document.createElement('button');
+    d.type='button'; d.setAttribute('role','tab');
+    d.setAttribute('aria-label', n); d.title = n;
+    d.addEventListener('click', function(){ go(i); });
+    dots.appendChild(d);
+  });
+  var dotbtns = [].slice.call(dots.children);
+
+  var hint = document.getElementById('hint');
+  function marks(){
+    var l = leaves[at];
+    if(!l) return;
+    var room = l.scrollHeight - l.clientHeight;
+    hint.style.setProperty('--fade', getComputedStyle(l).getPropertyValue('--fade'));
+    hint.className = (room > 24 && l.scrollTop < room - 16) ? 'hint on' : 'hint';
+  }
+  window.addEventListener('resize', marks);
+  leaves.forEach(function(l){ l.addEventListener('scroll', marks, {passive:true}); });
+
+  function paint(){
+    leaves.forEach(function(l,i){
+      var on = i===at;
+      l.classList.toggle('on', on);
+      l.setAttribute('aria-hidden', on ? 'false' : 'true');
+    });
+    var n = names[at];
+    barname.textContent = n.length>46 ? n.slice(0,44).trim()+'\u2026' : n;
+    barfolio.textContent = (at+1)+' of '+leaves.length;
+    prev.disabled = at===0; next.disabled = at===leaves.length-1;
+    dotbtns.forEach(function(d,i){ d.setAttribute('aria-current', i===at ? 'true':'false'); });
+    if(typeof marks==='function') setTimeout(marks,0);
+  }
+
+  function go(to, dir){
+    to = Math.max(0, Math.min(leaves.length-1, to));
+    if(busy || to===at) return;
+    dir = dir || (to>at ? 1 : -1);
+    var live = leaves[at];
+
+    if(calm || narrow()){
+      at = to; paint(); leaves[at].scrollTop = 0;
+      leaves[at].classList.add('fade');
+      setTimeout(function(){ leaves[at].classList.remove('fade'); }, 360);
+      return;
+    }
+
+    busy = true;
+    turner.className = 'turner ' + (dir>0 ? 'fwd' : 'bwd');
+    turner.style.transition = 'none';
+    turner.style.transform  = 'rotateY(' + (dir>0 ? 0 : -180) + 'deg)';
+    /* force the start frame before animating */
+    void turner.offsetWidth;
+    turner.classList.add('go');
+    turner.style.transition = 'transform .72s cubic-bezier(.56,.04,.33,1)';
+    turner.style.transform  = 'rotateY(' + (dir>0 ? -180 : 0) + 'deg)';
+
+    /* swap the spread beneath while the leaf hides it */
+    setTimeout(function(){
+      at = to; paint(); leaves[at].scrollTop = 0;
+      live.scrollTop = 0;
+    }, 300);
+
+    setTimeout(function(){
+      turner.classList.remove('go');
+      turner.style.transition='none';
+      busy = false;
+    }, 740);
+  }
+
+  prev.addEventListener('click', function(){ go(at-1,-1); });
+  next.addEventListener('click', function(){ go(at+1, 1); });
+
+  /* ── keyboard ─────────────────────────────────────────────── */
+  window.addEventListener('keydown', function(e){
+    if(!body.classList.contains('opened')){
+      if(e.key==='Enter'||e.key===' '||e.key==='Escape'){ e.preventDefault(); open(); }
+      return;
+    }
+    var t=e.target.tagName;
+    if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT') return;
+    if(e.key==='ArrowRight'||e.key==='PageDown'){ e.preventDefault(); go(at+1,1); }
+    if(e.key==='ArrowLeft' ||e.key==='PageUp'  ){ e.preventDefault(); go(at-1,-1); }
+    if(e.key==='Home'){ e.preventDefault(); go(0,-1); }
+    if(e.key==='End' ){ e.preventDefault(); go(leaves.length-1,1); }
+  });
+
+  /* ── swipe, without stealing vertical scroll ──────────────── */
+  var sx=0, sy=0, tracking=false;
+  stack.addEventListener('touchstart', function(e){
+    if(e.touches.length!==1) return;
+    sx=e.touches[0].clientX; sy=e.touches[0].clientY; tracking=true;
+  }, {passive:true});
+  stack.addEventListener('touchend', function(e){
+    if(!tracking) return; tracking=false;
+    var dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy;
+    if(Math.abs(dx)>56 && Math.abs(dx)>Math.abs(dy)*1.6) go(at + (dx<0?1:-1), dx<0?1:-1);
+  }, {passive:true});
+
+  /* ── the cover ────────────────────────────────────────────── */
   function open(){
     if(body.classList.contains('opened')) return;
     clearTimeout(timer);
@@ -727,24 +1001,19 @@ body.opened .wa{opacity:1;pointer-events:auto}
     body.classList.add('opened');
     setTimeout(function(){
       shelf.classList.add('gone');
-      var s1 = document.getElementById('start');
-      s1.setAttribute('tabindex','-1'); s1.focus({preventScroll:true});
+      var s1=document.getElementById('start');
+      if(s1){ s1.setAttribute('tabindex','-1'); s1.focus({preventScroll:true}); }
     }, calm ? 0 : 950);
   }
-
   btn.addEventListener('click', open);
   shelf.addEventListener('click', function(e){ if(e.target===shelf) open(); });
-  window.addEventListener('keydown', function(e){
-    if(!body.classList.contains('opened') && (e.key==='Enter'||e.key===' '||e.key==='Escape')){
-      e.preventDefault(); open();
-    }
-  });
   window.addEventListener('wheel', open, {passive:true, once:true});
   window.addEventListener('touchmove', open, {passive:true, once:true});
 
+  paint();
+  marks(); setTimeout(marks, 600);
   if(location.hash || calm){ open(); }
   else {
-    // the book opens itself; the gold line under the button shows it coming
     requestAnimationFrame(function(){ shelf.classList.add('counting'); });
     timer = setTimeout(open, 4000);
   }
