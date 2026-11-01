@@ -1,401 +1,672 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ofsted-registered daycare in Surrey Quays (SE16) for children birth to school age. EYFS certified, SEN specialist, Paediatric First Aid trained.">
-  <meta property="og:title" content="Miss Amy's Daycare — Surrey Quays SE16">
-  <meta property="og:description" content="Warm, nurturing childcare in Surrey Quays. EYFS certified with specialist SEN support for non-verbal and additional needs children.">
-  <meta property="og:type" content="business.business">
-  <meta property="og:url" content="https://missamysdaycare.co.uk/">
-  <meta name="theme-color" content="#0d1b3e">
-  <title>Miss Amy's Daycare — Surrey Quays SE16</title>
-  <link rel="icon" href="Img/favicon_missamy.png" type="image/png">
-  <link rel="canonical" href="https://missamysdaycare.co.uk/">
-  <link rel="stylesheet" href="Css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Miss Amy's Daycare — Surrey Quays SE16</title>
+<meta name="description" content="Ofsted-registered daycare in Surrey Quays (SE16) for children birth to school age. EYFS certified, SEN specialist, Paediatric First Aid trained.">
+<meta property="og:title" content="Miss Amy's Daycare — Surrey Quays SE16">
+<meta property="og:description" content="Warm, nurturing childcare in Surrey Quays. EYFS certified with specialist SEN support for non-verbal and additional needs children.">
+<meta property="og:type" content="business.business">
+<meta property="og:url" content="https://missamysdaycare.co.uk/">
+<meta property="og:image" content="https://missamysdaycare.co.uk/Img/MISSAMY_LOGO.png">
+<meta name="theme-color" content="#0B1733">
+<link rel="canonical" href="https://missamysdaycare.co.uk/">
+<link rel="icon" href="Img/favicon_missamy.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"ChildCare",
+  "name":"Miss Amy's Daycare",
+  "description":"Ofsted-registered early years childcare setting in Surrey Quays with specialist SEN support.",
+  "url":"https://missamysdaycare.co.uk/",
+  "image":"https://missamysdaycare.co.uk/Img/MISSAMY_LOGO.png",
+  "telephone":"+447502312859","priceRange":"Price on application",
+  "address":{"@type":"PostalAddress","addressLocality":"Surrey Quays, London","postalCode":"SE16","addressCountry":"GB"},
+  "areaServed":["Surrey Quays","Bermondsey","Canada Water","Rotherhithe","SE16"],
+  "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"18:00"},
+  "identifier":{"@type":"PropertyValue","name":"Ofsted URN","value":"2514998"}
+}
+</script>
+
+<style>
+/* ══════════════════════════════════════════════════════════
+   Miss Amy's Daycare — the setting as a storybook.
+   The open book on her crest, made literal.
+   ══════════════════════════════════════════════════════════ */
+
+:root{
+  --navy:#132450;
+  --navy-deep:#0B1733;
+  --desk:#0A1026;
+  --gold:#E0A02E;
+  --gold-deep:#B07A17;
+  --paper:#FBF5E9;
+  --paper-edge:#EFE5D2;
+  --ink:#241F1A;
+  --ink-soft:#6A6054;
+  --rule:rgba(36,31,26,.14);
+  --page:min(1080px,94vw);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--desk);color:var(--ink);
+  font-family:'Hanken Grotesk',system-ui,sans-serif;
+  font-size:clamp(16px,.4vw+15px,17.5px);line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+body.shut{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-variation-settings:'SOFT' 50,'WONK' 1;font-weight:500;line-height:1.08;letter-spacing:-.015em}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* ── the closed book ────────────────────────────────────── */
+.shelf{
+  position:fixed;inset:0;z-index:100;display:grid;place-items:center;
+  background:
+    radial-gradient(120% 90% at 50% 40%,#1B2545 0%,var(--desk) 68%);
+  perspective:2200px;padding:24px;
+  transition:opacity .7s ease .55s,visibility .7s ease .55s;
+}
+.shelf.gone{opacity:0;visibility:hidden}
+
+.tome{position:relative;height:min(74vh,600px);aspect-ratio:3/4;max-width:82vw;transform-style:preserve-3d}
+.tome::after{ /* the shadow it casts on the desk */
+  content:"";position:absolute;left:6%;right:-4%;bottom:-5%;height:9%;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(0,0,0,.6),transparent 72%);
+  filter:blur(5px);
+}
+.leafstack{ /* page edges peeking out on the right */
+  position:absolute;inset:0 -7px 0 14px;border-radius:4px 7px 7px 4px;
+  background:linear-gradient(90deg,var(--paper-edge) 0%,#E3D7C0 55%,#CFC0A4 100%);
+  box-shadow:inset -2px 0 4px rgba(0,0,0,.16);
+}
+.front{
+  position:absolute;inset:0;border-radius:4px 9px 9px 4px;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.42) 0 16px,rgba(0,0,0,.18) 16px 30px,transparent 30px),
+    linear-gradient(160deg,#1A2B5E 0%,var(--navy) 46%,#0E1C40 100%);
+  box-shadow:0 26px 60px rgba(0,0,0,.55);
+  transform-origin:left center;transform:rotateY(0deg);
+  transition:transform 1.25s cubic-bezier(.62,.03,.3,1);
+  backface-visibility:hidden;
+  display:grid;grid-template-rows:auto 1fr auto;justify-items:center;align-items:center;
+  padding:min(8%,38px) min(9%,34px);text-align:center;
+  border:1px solid rgba(224,160,46,.22);
+}
+.shelf.open .front{transform:rotateY(-158deg)}
+.front::before{ /* gold rule frame, foil-stamped */
+  content:"";position:absolute;inset:16px 14px 16px 34px;
+  border:1px solid rgba(224,160,46,.4);border-radius:3px;pointer-events:none;
+}
+.crest{width:min(31%,108px);align-self:start;padding-top:min(6%,22px);filter:drop-shadow(0 3px 7px rgba(0,0,0,.45))}
+.front h1{
+  color:var(--gold);font-size:clamp(1.55rem,5.1vw,2.3rem);
+  font-variation-settings:'SOFT' 30,'WONK' 0;font-weight:600;
+  margin:min(5%,22px) 0 10px;text-wrap:balance;
+}
+.motto{
+  font-size:clamp(.5625rem,2vw,.6875rem);letter-spacing:.14em;
+  color:rgba(224,160,46,.62);text-transform:uppercase;
+}
+.today{
+  align-self:end;padding-bottom:min(4%,14px);color:rgba(255,255,255,.62);font-size:.8125rem;
+  line-height:1.65;
+}
+.today b{display:block;color:rgba(255,255,255,.88);font-weight:500;font-size:.9375rem}
+.openit{
+  position:absolute;left:50%;bottom:-66px;transform:translateX(-50%);
+  background:none;border:1px solid rgba(224,160,46,.5);color:var(--gold);
+  font:inherit;font-size:.9375rem;padding:11px 26px;border-radius:999px;
+  cursor:pointer;white-space:nowrap;transition:background .25s,border-color .25s;
+}
+.openit:hover{background:rgba(224,160,46,.14);border-color:var(--gold)}
+.shelf.open .openit{opacity:0;transition:opacity .25s}
+
+/* ── the open book ──────────────────────────────────────── */
+.book{
+  width:var(--page);margin:clamp(70px,8vw,96px) auto clamp(20px,4vw,52px);
+  background:var(--paper);
+  border-radius:3px 8px 8px 3px;
+  box-shadow:
+    0 2px 0 var(--paper-edge),4px 4px 0 -1px #F3EADA,
+    0 40px 80px rgba(0,0,0,.5);
+  position:relative;overflow:hidden;
+  opacity:0;transform:translateY(14px);
+}
+body.opened .book{opacity:1;transform:none;transition:opacity .6s ease .35s,transform .6s ease .35s}
+.book::before{ /* the binding gutter */
+  content:"";position:absolute;left:0;top:0;bottom:0;width:clamp(16px,3vw,46px);
+  background:linear-gradient(90deg,rgba(36,31,26,.2),rgba(36,31,26,.05) 42%,transparent);
+  pointer-events:none;z-index:3;
+}
+
+.spread{
+  display:grid;grid-template-columns:1fr 1fr;position:relative;
+}
+.spread + .spread{border-top:1px solid var(--rule)}
+.spread::before{ /* the centre gutter where the pages meet */
+  content:"";position:absolute;left:50%;top:0;bottom:0;width:clamp(30px,5vw,74px);
+  transform:translateX(-50%);z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(36,31,26,.13) 44%,rgba(36,31,26,.17) 50%,rgba(36,31,26,.10) 56%,transparent);
+}
+.pg{
+  counter-increment:folio;position:relative;
+  padding:clamp(38px,4.6vw,74px) clamp(26px,3.6vw,56px) clamp(46px,4.6vw,66px);
+}
+.pg:first-child{padding-left:clamp(40px,5.6vw,96px)}
+.pg:last-child{padding-right:clamp(40px,5.6vw,96px)}
+.pg::after{
+  content:counter(folio);position:absolute;bottom:clamp(16px,2vw,28px);
+  font-size:.75rem;color:var(--ink-soft);font-variant-numeric:tabular-nums;
+}
+.pg:first-child::after{left:clamp(40px,5.6vw,96px)}
+.pg:last-child::after{right:clamp(40px,5.6vw,96px)}
+.pg.wide{grid-column:1 / -1}
+.pg.wide::after{left:auto;right:clamp(40px,5.6vw,96px)}
+.pg.blank{content-visibility:auto}
+.book{counter-reset:folio}
+
+.chap{
+  font-size:.75rem;letter-spacing:.17em;color:var(--gold-deep);
+  text-transform:uppercase;display:block;margin-bottom:14px;
+}
+.pg h2{font-size:clamp(1.7rem,2.9vw,2.5rem);margin-bottom:.55em;max-width:17ch;text-wrap:balance}
+.pg p{max-width:56ch;color:var(--ink-soft)}
+.pg p + p{margin-top:1em}
+.ink{color:var(--ink)}
+
+/* buttons */
+.btn{
+  display:inline-block;padding:13px 26px;border-radius:999px;text-decoration:none;
+  font-size:.9688rem;font-weight:500;border:1.5px solid transparent;line-height:1.3;
+  transition:background .22s,border-color .22s,color .22s;
+}
+.btn-gold{background:var(--gold);color:#1B2240;box-shadow:0 2px 0 var(--gold-deep)}
+.btn-gold:hover{background:#EFB246}
+.btn-ink{border-color:rgba(36,31,26,.3);color:var(--ink)}
+.btn-ink:hover{background:rgba(36,31,26,.06);border-color:var(--ink)}
+.btn-pale{border-color:rgba(255,255,255,.35);color:#fff}
+.btn-pale:hover{background:rgba(255,255,255,.1);border-color:#fff}
+
+/* ── title page ─────────────────────────────────────────── */
+.pg-title{display:flex;flex-direction:column;justify-content:center}
+.pg-title h2{font-size:clamp(2.1rem,4.1vw,3.3rem);max-width:13ch;margin-bottom:.4em}
+.pg-title .stand{font-size:clamp(1.0313rem,1.15vw,1.125rem);max-width:44ch;color:var(--ink-soft)}
+.frontis{counter-increment:none;padding:0!important;position:relative;overflow:hidden;background:var(--paper-edge)}
+.frontis::after{display:none}
+.frontis img{width:100%;height:100%;object-fit:cover;min-height:460px}
+.frontis figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:70px 26px 22px;
+  background:linear-gradient(transparent,rgba(11,23,51,.8));color:rgba(255,255,255,.9);
+  font-size:.8125rem;letter-spacing:.06em;
+}
+.marks{display:flex;gap:clamp(20px,2.6vw,42px);flex-wrap:wrap;margin:32px 0 30px;
+  padding-top:24px;border-top:1px solid var(--rule)}
+.marks b{font-family:Fraunces,serif;font-weight:500;font-size:1.5rem;display:block;color:var(--navy);line-height:1}
+.marks span{font-size:.8125rem;color:var(--ink-soft)}
+.avail{display:flex;align-items:center;gap:9px;margin-top:18px;font-size:.9375rem;color:var(--ink-soft)}
+.pip{width:8px;height:8px;border-radius:50%;background:#2F9E6B;flex:none}
+
+/* ── contents ───────────────────────────────────────────── */
+.toc{list-style:none;max-width:48ch;margin-top:6px}
+.toc li + li{border-top:1px solid var(--rule)}
+.toc a{
+  display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:14px;
+  padding:16px 0;text-decoration:none;
+}
+.toc a:hover .t{color:var(--gold-deep)}
+.toc .t{font-family:Fraunces,serif;font-size:1.1875rem;font-weight:500;color:var(--ink);transition:color .2s}
+.toc .d{font-size:.875rem;color:var(--ink-soft);grid-column:1;margin-top:2px}
+.toc .n{font-size:.8125rem;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+
+/* ── plates (photographs) ───────────────────────────────── */
+.plates{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,1vw,14px);margin-top:28px}
+.plate{margin:0;position:relative;overflow:hidden;border-radius:2px;background:var(--paper-edge)}
+.plate:first-child{grid-column:span 2;grid-row:span 2}
+.plate img{width:100%;height:100%;object-fit:cover;aspect-ratio:1}
+.plate:first-child img{aspect-ratio:1}
+.plates figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:22px 14px 11px;
+  background:linear-gradient(transparent,rgba(11,23,51,.82));
+  color:#fff;font-size:.8125rem;
+}
+.plate-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:18px;margin-top:20px}
+.plate-note{font-size:.8125rem;color:var(--ink-soft);font-style:italic;margin:0}
+
+/* ── about ──────────────────────────────────────────────── */
+.portrait{counter-increment:none;padding:0!important;position:relative;overflow:hidden;background:var(--paper-edge)}
+.portrait::after{display:none}
+.portrait img{width:100%;height:100%;object-fit:cover;min-height:520px}
+.creds{list-style:none;margin-top:26px;border-top:1px solid var(--rule)}
+.creds li{padding:13px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:baseline}
+.creds b{font-weight:600;font-size:.9375rem;color:var(--ink)}
+.creds span{font-size:.875rem;color:var(--ink-soft)}
+.creds i{width:7px;height:7px;border-radius:50%;background:var(--gold);display:block;transform:translateY(-2px)}
+
+/* ── a dark leaf, for the SEN chapter ───────────────────── */
+.sp-dark{background:var(--navy);color:#fff}
+.sp-dark::before{background:linear-gradient(90deg,transparent,rgba(0,0,0,.34) 48%,rgba(0,0,0,.38) 50%,rgba(0,0,0,.26) 56%,transparent)}
+.sp-dark .pg::after{color:rgba(255,255,255,.4)}
+.sp-dark .chap{color:var(--gold)}
+.sp-dark h2{color:#fff}
+.sp-dark p{color:rgba(255,255,255,.76)}
+.tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 30px}
+.tags li{border:1px solid rgba(255,255,255,.26);border-radius:999px;padding:6px 14px;font-size:.8438rem;color:rgba(255,255,255,.85)}
+.tags li:first-child,.tags li:nth-child(2){color:var(--gold);border-color:rgba(224,160,46,.6);font-weight:500}
+
+/* ── testimonials as margin notes ───────────────────────── */
+.said{max-width:46ch}
+.said blockquote{
+  font-family:Fraunces,serif;font-variation-settings:'SOFT' 60,'WONK' 0;
+  font-weight:300;font-size:clamp(1.125rem,2vw,1.5rem);line-height:1.42;
+  padding:26px 0 0;border-top:1px solid var(--rule);
+}
+.said blockquote:first-of-type{border-top:none;padding-top:0}
+.said cite{display:block;font-style:normal;font-size:.8438rem;color:var(--ink-soft);margin:12px 0 28px}
+
+/* ── questions ──────────────────────────────────────────── */
+.qs{max-width:52ch;margin-top:6px}
+.qs details{border-bottom:1px solid var(--rule)}
+.qs summary{
+  cursor:pointer;list-style:none;padding:17px 34px 17px 0;position:relative;
+  font-family:Fraunces,serif;font-size:1.0625rem;font-weight:500;
+}
+.qs summary::-webkit-details-marker{display:none}
+.qs summary::after{
+  content:"";position:absolute;right:6px;top:50%;width:9px;height:9px;
+  border-right:1.5px solid var(--gold-deep);border-bottom:1.5px solid var(--gold-deep);
+  transform:translateY(-70%) rotate(45deg);transition:transform .22s;
+}
+.qs details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
+.qs p{padding:0 0 19px;font-size:.9688rem}
+
+/* ── training + closing ─────────────────────────────────── */
+.sp-gold{background:linear-gradient(170deg,#F7EBD2,#EFDCB4)}
+.sp-gold h2{color:var(--navy)}
+.sp-gold p{color:#5C4A24}
+.sp-gold .pg::after{color:#8A7239}
+.sp-end{background:var(--navy-deep);color:#fff}
+.sp-end::before{background:linear-gradient(90deg,transparent,rgba(0,0,0,.4) 48%,rgba(0,0,0,.44) 50%,rgba(0,0,0,.3) 56%,transparent)}
+.sp-end .pg::after{color:rgba(255,255,255,.35)}
+.sp-end h2{color:#fff}
+.sp-end p{color:rgba(255,255,255,.72)}
+.colophon{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));
+  gap:28px;margin-top:40px;padding-top:28px;border-top:1px solid rgba(255,255,255,.14);
+  font-size:.9062rem;
+}
+.colophon h3{font-family:'Hanken Grotesk',sans-serif;font-size:.8125rem;font-weight:600;color:var(--gold);margin-bottom:11px;letter-spacing:.04em}
+.colophon ul{list-style:none;display:grid;gap:8px}
+.colophon a{color:rgba(255,255,255,.7);text-decoration:none}
+.colophon a:hover{color:var(--gold)}
+.imprint{margin-top:30px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14);
+  font-size:.7812rem;color:rgba(255,255,255,.42);display:flex;flex-wrap:wrap;gap:8px 22px}
+.imprint a{color:rgba(255,255,255,.56)}
+
+/* ── running head: the book's navigation ──────────────── */
+.runhead{
+  position:fixed;top:0;left:0;right:0;z-index:38;
+  background:rgba(251,245,233,.93);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--rule);
+  display:flex;align-items:center;gap:18px;
+  padding:0 clamp(14px,4vw,34px);height:54px;
+  opacity:0;transform:translateY(-100%);pointer-events:none;
+  transition:opacity .4s ease,transform .4s ease;
+}
+body.opened .runhead{opacity:1;transform:none;pointer-events:auto}
+.runhead .mark{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto;flex:none}
+.runhead .mark img{height:28px;width:auto}
+.runhead .mark span{
+  font-family:Fraunces,serif;font-weight:500;font-size:1rem;color:var(--navy);
+  white-space:nowrap;
+}
+.runhead nav{
+  display:flex;gap:clamp(10px,1.7vw,24px);overflow-x:auto;scrollbar-width:none;
+  -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),transparent);
+          mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),transparent);
+}
+@media (min-width:980px){.runhead nav{-webkit-mask-image:none;mask-image:none}}
+.runhead nav::-webkit-scrollbar{display:none}
+.runhead nav a{
+  text-decoration:none;font-size:.875rem;color:var(--ink-soft);white-space:nowrap;
+  padding:4px 0;border-bottom:1.5px solid transparent;transition:color .2s,border-color .2s;
+}
+.runhead nav a:hover{color:var(--navy);border-bottom-color:var(--gold)}
+@media (max-width:760px){ .runhead .mark span{display:none} }
+
+/* ── the ribbon: always-there way back to the form ──────── */
+.ribbon{
+  position:fixed;top:54px;right:clamp(16px,5vw,74px);z-index:40;
+  background:var(--gold);color:#1B2240;text-decoration:none;font-weight:600;font-size:.875rem;
+  padding:16px 18px 20px;border-radius:0 0 3px 3px;
+  box-shadow:0 8px 20px rgba(0,0,0,.38);
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%);
+  opacity:0;pointer-events:none;transition:opacity .4s ease .8s,transform .22s;
+}
+body.opened .ribbon{opacity:1;pointer-events:auto}
+.ribbon:hover{transform:translateY(3px)}
+
+.wa{
+  position:fixed;right:18px;bottom:18px;z-index:40;width:54px;height:54px;border-radius:50%;
+  background:#25D366;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.4);
+  opacity:0;pointer-events:none;transition:opacity .4s ease .9s,transform .2s;
+}
+body.opened .wa{opacity:1;pointer-events:auto}
+.wa:hover{transform:scale(1.07)}
+.wa svg{width:27px;height:27px;fill:#fff}
+
+/* ── responsive ─────────────────────────────────────────── */
+@media (max-width:900px){
+  .spread{grid-template-columns:1fr}
+  .spread::before{display:none}
+  .pg{padding:clamp(34px,5vw,54px) clamp(24px,5vw,46px) clamp(44px,5vw,54px)!important}
+  .pg:first-child::after,.pg:last-child::after,.pg.wide::after{
+    left:auto;right:clamp(24px,5vw,46px)}
+  .pg + .pg{border-top:1px solid var(--rule)}
+  .sp-dark .pg + .pg,.sp-end .pg + .pg{border-top-color:rgba(255,255,255,.14)}
+  .frontis,.portrait{padding:0!important}
+  .frontis img{min-height:0;aspect-ratio:16/10}
+  .portrait img{min-height:0;aspect-ratio:4/3}
+  .frontis + .pg,.portrait + .pg{border-top:none!important}
+  .plates{grid-template-columns:repeat(2,1fr)}
+  .plate:first-child{grid-column:span 2;grid-row:auto}
+  .plate:first-child img{aspect-ratio:3/2}
+}
+@media (max-width:560px){
+  .book{border-radius:2px;margin-inline:8px}
+  .openit{bottom:-58px;font-size:.875rem;padding:10px 20px}
+  .ribbon{right:12px;font-size:.8125rem;padding:13px 14px 17px}
+}
+@media (prefers-reduced-motion:reduce){
+  .front,.book,.shelf,.ribbon,.wa{transition:none!important}
+  .book{opacity:1;transform:none}
+}
+</style>
 </head>
-<body>
-  <div id="nav-placeholder">
+<body class="shut">
 
-  </div>
-
-  <!-- LOCAL BUSINESS SCHEMA MARKUP -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Miss Amy's Daycare",
-    "description": "Ofsted-registered early years childcare setting in Surrey Quays with specialist SEN support",
-    "url": "https://missamysdaycare.co.uk/",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Surrey Quays",
-      "addressLocality": "London",
-      "postalCode": "SE16",
-      "addressCountry": "GB"
-    },
-    "telephone": "+447502312859",
-    "priceRange": "Price on Application",
-    "image": "https://missamysdaycare.co.uk/Img/MISSAMY_LOGO.png",
-    "areaServed": ["SE16", "London", "Bermondsey"],
-    "knowsAbout": ["Early Years Foundation Stage", "Childcare", "SEN Support", "Non-verbal children"],
-    "sameAs": [
-      "https://www.facebook.com/missamy",
-      "https://www.instagram.com/missamy",
-      "https://www.tiktok.com/@missamy"
-  }
-  </script>
-
-  <!-- FAQ SCHEMA MARKUP -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What ages do you accept?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We welcome babies from 3 months through to school-age children up to 11 years. Different sessions are tailored to each age group."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are you Ofsted registered?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes — fully Ofsted registered (2514998). You can use government-funded childcare hours and childcare vouchers where applicable."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do you accept funded hours?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes — we accept 15 and 30 hours government-funded childcare for eligible children. Contact us to check current availability and your eligibility."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can you support additional needs?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Miss Amy has extensive experience supporting children with SEN including non-verbal and limited speech. Visit our SEN page to learn more about our approach."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I join the waiting list?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Complete our waiting list form online or book a visit to discuss your family's needs in person. Spaces are allocated as they become available."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is your safeguarding policy?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "All staff hold up-to-date safeguarding training and enhanced DBS checks. Our full safeguarding policy is available to download on the Policies page."
-        }
-      }
-    ]
-  }
-  </script>
-
-  <!-- BREADCRUMB SCHEMA MARKUP -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://missamysdaycare.co.uk/"
-      }
-    ]
-  }
-  </script>
-  <section id="hero">
-    <div class="hero-content fade-in">
-      <h1>Where little ones <em>learn, grow</em> and belong</h1>
-      <p>A warm, Ofsted-registered early years setting in Surrey Quays offering nurturing childcare and education for children from birth to school age.</p>
-      <div class="hero-actions">
-        <a href="waiting-list.html" class="btn-outline-white">Join Waiting List</a>
-      </div>
-      <div class="hero-actions">
-        <a href="professional-training.html" class="btn-outline-white">Explore Child Minder Training</a>
-      </div>
-      <div class="hero-divider">
-        <div class="hero-stat"><div class="num">10+</div><div class="lbl">Years experience</div></div>
-        <div class="hero-stat"><div class="num">EYFS</div><div class="lbl">Certified curriculum</div></div>
-        <div class="hero-stat"><div class="num">SEN</div><div class="lbl">Inclusive setting</div></div>
-      </div>
-    </div>
-
-    <div class="hero-right fade-in">
-      <div class="cred-card">
-        <div class="cred-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-        <div><h4>EYFS Qualified Practitioner</h4><p>Full Early Years Foundation Stage certification</p></div>
-      </div>
-      <div class="cred-card">
-        <div class="cred-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <div><h4>Safeguarding Lead</h4><p>Level 3 trained &amp; regularly updated</p></div>
-      </div>
-      <div class="cred-card">
-        <div class="cred-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-        <div><h4>Paediatric First Aid</h4><p>Current certification held</p></div>
-      </div>
-      <div class="cred-card">
-        <div class="cred-icon"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
-        <div><h4>SEN Specialist</h4><p>Non-verbal &amp; additional needs expertise</p></div>
-      </div>
-      <div class="cred-card">
-        <div class="cred-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg></div>
-        <div><h4>Ofsted Registered</h4><p>DBS cleared · Fully compliant setting</p></div>
-      </div>
-      <div class="avail-badge">
-        <div class="avail-dot"></div>
-        <span><strong>Spaces available</strong> — September intake open</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ACTION CARDS -->
-  <section id="actions">
-    <div class="actions-grid">
-      <a href="gallery.html" class="action-card fade-in">
-        <div class="action-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div>
-        <h3>Activities Centre</h3>
-        <p>See our learning spaces, arts studio and outdoor garden</p>
-        <span class="action-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true" focusable="false" style="display:block"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></span>
-      </a>
-      <a href="sen.html" class="action-card fade-in">
-        <div class="action-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-        <h3>SEN Support</h3>
-        <p>Specialist care for children with additional needs</p>
-        <span class="action-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true" focusable="false" style="display:block"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></span>
-      </a>
-      <a href="services.html" class="action-card fade-in">
-        <div class="action-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
-        <h3>Services &amp; Fees</h3>
-        <p>Full-day, wraparound, holiday club and funded hours</p>
-        <span class="action-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true" focusable="false" style="display:block"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></span>
-      </a>
-      <a href="gallery.html#uniforms" class="action-card fade-in">
-        <div class="action-icon"><svg viewBox="0 0 24 24"><path d="M16 3a2 2 0 0 0-2 2v2H8V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2h6v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2z" stroke="currentColor" fill="none" stroke-width="1.5"/></svg></div>
-        <h3>Uniforms &amp; Dress Code</h3>
-        <p>Browse our smart uniforms and clothing guidelines</p>
-        <span class="action-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true" focusable="false" style="display:block"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></span>
-      </a>
-      <a href="https://wa.me/447502312859" target="_blank" class="action-card wa fade-in">
-        <div class="action-icon"><svg viewBox="0 0 24 24" fill="white" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></div>
-        <h3>Quick Contact</h3>
-        <p>Message us directly on WhatsApp — we reply fast</p>
-        <span class="action-arrow wa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true" focusable="false" style="display:block"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></span>
-      </a>
-    </div>
-  </section>
-
-  <!-- GALLERY PREVIEW -->
-  <section id="gallery-preview">
-    <div class="gp-header fade-in">
+<!-- ══ the closed book ══════════════════════════════════ -->
+<div class="shelf" id="shelf">
+  <div class="tome">
+    <div class="leafstack"></div>
+    <div class="front">
+      <img class="crest" src="Img/MISSAMY_LOGO.png" alt="">
       <div>
-        <span class="section-label">Our Setting</span>
-        <h2 class="section-title">Life at Miss Amy's Daycare</h2>
+        <h1>Miss Amy's Daycare</h1>
+        <p class="motto">Seek God, Grow in Knowledge</p>
       </div>
-      <a href="gallery.html" class="btn-outline-white small">View full gallery<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:-2px;margin-left:6px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
+      <p class="today">Surrey Quays, SE16<br><b id="today">&nbsp;</b></p>
     </div>
-    <div class="gp-grid fade-in">
-      <a href="gallery.html" class="gp-card" title="View gallery - outdoor play area">
-        <div class="gp-card-inner" style="background-image: url('Img/IMG-23.jpg'); background-size: cover; background-position: center;" role="img" aria-label="Children on outdoor trip and adventure at Miss Amy's Daycare">
-          <div class="gp-card-overlay"></div>
-          <div class="gp-card-label"><h4></h4><p></p></div>
-        </div>
-      </a>
-      <a href="gallery.html#uniforms" class="gp-card" title="View uniform dress code guide">
-        <div class="gp-card-inner" style="background-image: url('Img/IMG-2.jpg'); background-size: cover; background-position: center;" role="img" aria-label="Uniform dress code display at Miss Amy's Daycare">
-          <div class="gp-card-overlay"></div>
-          <div class="gp-card-label"><h4>Dress code guide</h4><p>Complete uniform guidelines and requirements</p></div>
-        </div>
-      </a>
-      <a href="gallery.html" class="gp-card" title="View gallery - learning activities">
-        <div class="gp-card-inner" style="background-image: url('Img/IMG-3.jpg'); background-size: cover; background-position: center;" role="img" aria-label="Children engaged in learning and curriculum activities">
-          <div class="gp-card-overlay"></div>
-          <div class="gp-card-label"><h4></h4><p></p></div>
-        </div>
-      </a>
-      <a href="gallery.html" class="gp-card" title="View gallery - creative activities">
-        <div class="gp-card-inner" style="background-image: url('Img/IMG-21.jpg'); background-size: cover; background-position: center;" role="img" aria-label="Outdoor play and exploration trip at Miss Amy's Daycare">
-          <div class="gp-card-overlay"></div>
-          <div class="gp-card-label"></div>
-        </div>
-      </a>
-      <a href="gallery.html#uniforms" class="gp-card" title="View gallery - uniform options">
-        <div class="gp-card-inner" style="background-image: url('Img/IMG-20.jpg'); background-size: cover; background-position: center;" role="img" aria-label="Early years curriculum activity at Miss Amy's Daycare">
-          <div class="gp-card-overlay"></div>
-          <div class="gp-card-label"></div>
-        </div>
-      </a>
-    </div>
-    <div class="gp-see-all fade-in">
-      <a href="gallery.html" class="btn-outline-white">See all spaces &amp; activities<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:-2px;margin-left:6px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
-    </div>
-  </section>
-
-  <!-- ABOUT EDITORIAL -->
-  <section id="about-strip">
-    <div class="about-editorial">
-      <div class="about-image-side">
-        <div class="about-img-inner">
-          <img src="Img/favicon_missamy.png" alt="Miss Amy's Daycare logo - early years childcare in Surrey Quays SE16">
-        </div>
-        <div class="about-overlay-text">
-          <span class="section-label">About Miss Amy</span>
-          <h2>A trusted name in Surrey Quays childcare</h2>
-          <p>Over a decade of experience. Deep commitment to every child's individual journey.</p>
-        </div>
-      </div>
-      <div class="about-text-side fade-in">
-        <p>Miss Amy's Daycare is a professional, Ofsted-registered early years setting in Surrey Quays, SE16. Miss Amy provides a safe, stimulating and deeply nurturing environment where every child is seen, valued and supported.</p>
-        <p>Rooted in the EYFS framework, with specialist experience supporting children with additional needs, including non-verbal and limited speech. Miss Amy's approach is always personal, always intentional.</p>
-        <p>Her long-term vision is to grow from a highly regarded childminding setting into a fully registered early years prep school raising the standard of early education in the community.</p>
-        <div class="qual-chips">
-          <span class="chip gold">Ofsted Registered</span>
-          <span class="chip">EYFS Qualified</span>
-          <span class="chip">Paediatric First Aid</span>
-          <span class="chip">SEN Specialist</span>
-          <span class="chip">DBS Checked</span>
-        </div>
-        <div class="about-side-buttons">
-          <a href="about.html" class="btn-primary">Meet Miss Amy</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section id="testimonials">
-    <div class="section-header center fade-in">
-      <span class="section-label">Parent Reviews</span>
-      <h2 class="section-title">What families say about us</h2>
-      <p class="section-subtitle">Hover over a review to read more</p>
-    </div>
-    <div class="testi-grid">
-      <div class="testi-card fade-in">
-        <div class="testi-stars">
-          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-        </div>
-        <blockquote>"Miss Amy has been incredible with our daughter. The daily updates, the love and patience she shows we honestly couldn't ask for more. She is absolutely thriving."</blockquote>
-        <div class="testi-author">
-          <div class="author-av">S</div>
-          <div class="author-info"><h4></h4><p>Parent, Surrey Quays</p></div>
-        </div>
-      </div>
-      <div class="testi-card fade-in">
-        <div class="testi-stars">
-          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-        </div>
-        <blockquote>"My son is non-verbal and Miss Amy has been a true blessing. She understands him in ways that genuinely surprised us. His communication has grown so much in just a few months."</blockquote>
-        <div class="testi-author">
-          <div class="author-av">D</div>
-          <div class="author-info"><h4></h4><p>Parents, Bermondsey</p></div>
-        </div>
-      </div>
-      <div class="testi-card fade-in">
-        <div class="testi-stars">
-          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-        </div>
-        <blockquote>"Professional, warm, organised and so experienced. My children have been with Miss Amy for three years and they absolutely love going every single day. Highly recommend."</blockquote>
-        <div class="testi-author">
-          <div class="author-av">T</div>
-          <div class="author-info"><h4></h4><p>Parent, Canada Water</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRAINING PROFESSIONALS BANNER -->
-  <div class="vision-bar vision-bar-gold">
-    <span class="section-label">Child Minder Training</span>
-    <h2>Do you want to become a child minder?</h2>
-    <p>Miss Amy offers specialised training and mentoring for people who want to be child minders, including EYFS framework coaching and SEN specialist support. Develop your practice with expert guidance.</p>
-    <a href="professional-training.html" class="btn-navy">Explore Child Minder Training</a>
+    <button class="openit" id="openit">Open the book</button>
   </div>
+</div>
 
-  <!-- FAQs -->
-  <section id="faqs">
-    <div class="faq-header fade-in">
-      <div>
-        <span class="section-label">FAQs</span>
-        <h2 class="section-title">Common questions answered</h2>
+<header class="runhead">
+  <a class="mark" href="index.html">
+    <img src="Img/MISSAMY_LOGO.png" alt="">
+    <span>Miss Amy&rsquo;s Daycare</span>
+  </a>
+  <nav aria-label="Pages">
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="sen.html">SEN</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="daily-routine.html">Routine</a>
+    <a href="professional-training.html">Training</a>
+    <a href="policies.html">Policies</a>
+  </nav>
+</header>
+
+<a class="ribbon" href="waiting-list.html">Waiting list</a>
+
+<!-- ══ the open book ════════════════════════════════════ -->
+<main class="book" id="book">
+
+  <!-- spread i · frontispiece + title page -->
+  <section class="spread">
+    <figure class="pg frontis">
+      <img src="Img/IMG-23.jpg" alt="Children exploring outdoors with Miss Amy's Daycare">
+      <figcaption>Surrey Quays, SE16 &middot; Ofsted URN 2514998</figcaption>
+    </figure>
+    <div class="pg pg-title" id="start">
+      <h2>Where little ones learn, grow and belong</h2>
+      <p class="stand">A warm, Ofsted-registered early years setting in Surrey Quays offering nurturing childcare and education for children from birth to school age.</p>
+      <div class="marks">
+        <div><b>10+</b><span>Years experience</span></div>
+        <div><b>EYFS</b><span>Certified curriculum</span></div>
+        <div><b>SEN</b><span>Inclusive setting</span></div>
       </div>
-      <a href="policies.html" class="btn-outline-white small">View all policies<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:-2px;margin-left:6px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
+      <p><a class="btn btn-gold" href="waiting-list.html">Join the waiting list</a></p>
+      <p class="avail"><span class="pip"></span>Spaces available &mdash; September intake open</p>
     </div>
-    <div class="faq-cols fade-in">
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">What ages do you accept?<span class="faq-q-icon"><svg viewBox="0 0 12 12"><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/></svg></span></button>
-        <div class="faq-a">We welcome babies from 3 months through to school-age children up to 11 years. Different sessions are tailored to each age group.</div>
+  </section>
+
+  <!-- spread ii · contents -->
+  <section class="spread">
+    <div class="pg">
+      <span class="chap">Contents</span>
+      <h2>What&rsquo;s inside</h2>
+      <p>Everything a parent in Surrey Quays usually wants to know, in the order it&rsquo;s usually asked.</p>
+    </div>
+    <div class="pg">
+      <ul class="toc">
+        <li><a href="gallery.html"><span class="t">Activities Centre</span><span class="n">i</span><span class="d">See our learning spaces, arts studio and outdoor garden</span></a></li>
+        <li><a href="sen.html"><span class="t">SEN Support</span><span class="n">ii</span><span class="d">Specialist care for children with additional needs</span></a></li>
+        <li><a href="services.html"><span class="t">Services &amp; Fees</span><span class="n">iii</span><span class="d">Full-day, wraparound, holiday club and funded hours</span></a></li>
+        <li><a href="gallery.html#uniforms"><span class="t">Uniforms &amp; Dress Code</span><span class="n">iv</span><span class="d">Browse our smart uniforms and clothing guidelines</span></a></li>
+        <li><a href="https://wa.me/447502312859" target="_blank" rel="noopener"><span class="t">Quick Contact</span><span class="n">v</span><span class="d">Message us directly on WhatsApp &mdash; we reply fast</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- spread iii · the plates -->
+  <section class="spread">
+    <div class="pg wide">
+      <span class="chap">Chapter one</span>
+      <h2>Life at Miss Amy&rsquo;s Daycare</h2>
+      <p>Our setting, through the week.</p>
+      <div class="plates">
+        <figure class="plate"><img src="Img/IMG-23.jpg" alt="Children on an outdoor trip at Miss Amy's Daycare" loading="lazy"></figure>
+        <figure class="plate"><img src="Img/IMG-2.jpg" alt="Uniform and dress code display" loading="lazy"><figcaption>Dress code guide</figcaption></figure>
+        <figure class="plate"><img src="Img/IMG-3.jpg" alt="Children engaged in learning and curriculum activities" loading="lazy"></figure>
+        <figure class="plate"><img src="Img/IMG-21.jpg" alt="Outdoor play and exploration" loading="lazy"></figure>
+        <figure class="plate"><img src="Img/IMG-20.jpg" alt="Early years curriculum activity" loading="lazy"></figure>
       </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Are you Ofsted registered?<span class="faq-q-icon"><svg viewBox="0 0 12 12"><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/></svg></span></button>
-        <div class="faq-a">Yes — fully Ofsted registered. You can use government-funded childcare hours and childcare vouchers where applicable.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Do you accept funded hours?<span class="faq-q-icon"><svg viewBox="0 0 12 12"><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/></svg></span></button>
-        <div class="faq-a">Yes — we accept 15 and 30 hours government-funded childcare for eligible children. Contact us to check current availability and your eligibility.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Can you support additional needs?<span class="faq-q-icon"><svg viewBox="0 0 12 12"><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/></svg></span></button>
-        <div class="faq-a">Yes. Miss Amy has extensive experience supporting children with SEN including non-verbal and limited speech. Visit our SEN page to learn more about our approach.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">How do I join the waiting list?<span class="faq-q-icon"><svg viewBox="0 0 12 12"><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/></svg></span></button>
-        <div class="faq-a">Complete our waiting list form online or book a visit to discuss your family's needs in person. Spaces are allocated as they become available.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">What is your safeguarding policy?<span class="faq-q-icon"><svg viewBox="0 0 12 12"><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/></svg></span></button>
-        <div class="faq-a">All staff hold up-to-date safeguarding training and enhanced DBS checks. Our full safeguarding policy is available to download on the Policies page.</div>
+      <div class="plate-foot">
+        <p class="plate-note">All photographs shared with full parental consent.</p>
+        <a class="btn btn-ink" href="gallery.html">See all spaces and activities</a>
       </div>
     </div>
   </section>
 
-  <!-- VISION -->
-  <div class="vision-bar vision-bar-navy">
-    <span class="section-label">Future Vision</span>
-    <h2>The journey to becoming a prep school has begun</h2>
-    <p>Miss Amy's Daycare is growing. Be among the first families to hear about our exciting transition into a full early years prep school.</p>
-    <a href="waiting-list.html" class="btn-navy">Join the Waitlist</a>
-    <a href="professional-training.html" class="btn-navy">Explore Child Minder Training</a>
-  </div>
+  <!-- spread iv · Miss Amy -->
+  <section class="spread">
+    <figure class="pg portrait">
+      <img src="Img/missamy.jpg" alt="Miss Amy at her setting in Surrey Quays" loading="lazy">
+    </figure>
+    <div class="pg">
+      <span class="chap">Chapter two</span>
+      <h2>A trusted name in Surrey Quays childcare</h2>
+      <p>Miss Amy&rsquo;s Daycare is a professional, Ofsted-registered early years setting in Surrey Quays, SE16. Miss Amy provides a safe, stimulating and deeply nurturing environment where every child is seen, valued and supported.</p>
+      <p>Rooted in the EYFS framework, with specialist experience supporting children with additional needs, including non-verbal and limited speech. Miss Amy&rsquo;s approach is always personal, always intentional.</p>
+      <p>Her long-term vision is to grow from a highly regarded childminding setting into a fully registered early years prep school raising the standard of early education in the community.</p>
+      <ul class="creds">
+        <li><i></i><div><b>EYFS Qualified Practitioner</b> <span>Full Early Years Foundation Stage certification</span></div></li>
+        <li><i></i><div><b>Safeguarding Lead</b> <span>Level 3 trained and regularly updated</span></div></li>
+        <li><i></i><div><b>Paediatric First Aid</b> <span>Current certification held</span></div></li>
+        <li><i></i><div><b>SEN Specialist</b> <span>Non-verbal and additional needs expertise</span></div></li>
+        <li><i></i><div><b>Ofsted Registered</b> <span>DBS cleared, fully compliant setting. URN 2514998</span></div></li>
+      </ul>
+      <p style="margin-top:26px"><a class="btn btn-ink" href="about.html">Meet Miss Amy</a></p>
+    </div>
+  </section>
 
-  <div id="footer-placeholder"></div>
-  <script src="Js/shared.js"></script>
-  <script>
-    renderNav('index.html');
-    renderFooter();
-    initFadeIn();
-    function toggleFaq(btn) {
-      const item = btn.parentElement;
-      const wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!wasOpen) item.classList.add('open');
+  <!-- spread v · additional needs -->
+  <section class="spread sp-dark">
+    <div class="pg">
+      <span class="chap">Chapter three</span>
+      <h2>Specialist care for children with additional needs</h2>
+      <p>Miss Amy has extensive experience supporting children with SEN, including those who are non-verbal or have limited speech. Every child with additional needs is supported through a plan written in partnership with their family and, where there is one, their speech therapist or health visitor.</p>
+    </div>
+    <div class="pg">
+      <span class="chap">Who we support</span>
+      <ul class="tags">
+        <li>Non-verbal</li><li>Limited speech</li><li>Autism</li><li>ADHD</li>
+        <li>Developmental delay</li><li>Down&rsquo;s syndrome</li><li>Sensory processing</li>
+        <li>EHCP in place</li><li>Awaiting assessment</li><li>Selective mutism</li><li>Dyspraxia</li>
+      </ul>
+      <a class="btn btn-pale" href="sen.html">How we support additional needs</a>
+    </div>
+  </section>
+
+  <!-- spread vi · families -->
+  <section class="spread">
+    <div class="pg">
+      <span class="chap">Chapter four</span>
+      <h2>What families say about us</h2>
+      <div class="said">
+        <blockquote>Miss Amy has been incredible with our daughter. The daily updates, the love and patience she shows we honestly couldn&rsquo;t ask for more. She is absolutely thriving.</blockquote>
+        <cite>Parent, Surrey Quays</cite>
+      </div>
+    </div>
+    <div class="pg">
+      <div class="said">
+        <blockquote>My son is non-verbal and Miss Amy has been a true blessing. She understands him in ways that genuinely surprised us. His communication has grown so much in just a few months.</blockquote>
+        <cite>Parents, Bermondsey</cite>
+        <blockquote>Professional, warm, organised and so experienced. My children have been with Miss Amy for three years and they absolutely love going every single day. Highly recommend.</blockquote>
+        <cite>Parent, Canada Water</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- spread vii · questions -->
+  <section class="spread">
+    <div class="pg">
+      <span class="chap">Chapter five</span>
+      <h2>Common questions answered</h2>
+      <p>If yours isn&rsquo;t here, message us on WhatsApp and Miss Amy will answer it herself.</p>
+      <p style="margin-top:26px"><a class="btn btn-ink" href="policies.html">View all policies</a></p>
+    </div>
+    <div class="pg">
+      <div class="qs">
+        <details><summary>What ages do you accept?</summary><p>We welcome babies from 3 months through to school-age children up to 11 years. Different sessions are tailored to each age group.</p></details>
+        <details><summary>Are you Ofsted registered?</summary><p>Yes &mdash; fully Ofsted registered. You can use government-funded childcare hours and childcare vouchers where applicable.</p></details>
+        <details><summary>Do you accept funded hours?</summary><p>Yes &mdash; we accept 15 and 30 hours government-funded childcare for eligible children. Contact us to check current availability and your eligibility.</p></details>
+        <details><summary>Can you support additional needs?</summary><p>Yes. Miss Amy has extensive experience supporting children with SEN including non-verbal and limited speech. Visit our SEN page to learn more about our approach.</p></details>
+        <details><summary>How do I join the waiting list?</summary><p>Complete our waiting list form online or book a visit to discuss your family&rsquo;s needs in person. Spaces are allocated as they become available.</p></details>
+        <details><summary>What is your safeguarding policy?</summary><p>All staff hold up-to-date safeguarding training and enhanced DBS checks. Our full safeguarding policy is available to download on the Policies page.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- spread viii · training -->
+  <section class="spread sp-gold">
+    <div class="pg">
+      <span class="chap">Chapter six</span>
+      <h2>Do you want to become a child minder?</h2>
+    </div>
+    <div class="pg">
+      <p>Miss Amy offers specialised training and mentoring for people who want to be child minders, including EYFS framework coaching and SEN specialist support. Develop your practice with expert guidance.</p>
+      <p style="margin-top:28px"><a class="btn btn-gold" href="professional-training.html">Explore Child Minder Training</a></p>
+    </div>
+  </section>
+
+  <!-- spread ix · the last page -->
+  <section class="spread sp-end">
+    <div class="pg">
+      <span class="chap">The last page</span>
+      <h2>The journey to becoming a prep school has begun</h2>
+      <p>Miss Amy&rsquo;s Daycare is growing. Be among the first families to hear about our exciting transition into a full early years prep school.</p>
+      <p style="margin-top:28px"><a class="btn btn-gold" href="waiting-list.html">Join the waiting list</a></p>
+    </div>
+    <div class="pg">
+      <div class="colophon" style="margin-top:0;padding-top:0;border:none">
+        <div>
+          <h3>The setting</h3>
+          <ul>
+            <li><a href="about.html">About Miss Amy</a></li>
+            <li><a href="services.html">Services and fees</a></li>
+            <li><a href="daily-routine.html">Daily routine</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>For parents</h3>
+          <ul>
+            <li><a href="waiting-list.html">Waiting list</a></li>
+            <li><a href="sen.html">SEN and inclusion</a></li>
+            <li><a href="policies.html">Policies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Get in touch</h3>
+          <ul>
+            <li><a href="https://wa.me/447502312859">WhatsApp</a></li>
+            <li><a href="professional-training.html">Child minder training</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Where</h3>
+          <ul><li>Surrey Quays, SE16</li><li>Open 7am to 6pm, Mon to Fri</li><li>Ofsted URN 2514998</li></ul>
+        </div>
+      </div>
+      <p class="imprint">
+        <span>&copy; 2026 Miss Amy&rsquo;s Daycare</span>
+        <a href="policies.html#gdpr">Privacy</a>
+        <a href="policies.html">Safeguarding</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<a class="wa" href="https://wa.me/447502312859" target="_blank" rel="noopener" aria-label="Message Miss Amy on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15s-.77.96-.94 1.16c-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.03 1.02-1.03 2.48s1.06 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.88 9.89m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.004c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.42"/></svg>
+</a>
+
+<script>
+(function(){
+  var shelf=document.getElementById('shelf'),
+      btn=document.getElementById('openit'),
+      body=document.body;
+
+  document.getElementById('today').textContent =
+    new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function open(){
+    if(body.classList.contains('opened')) return;
+    shelf.classList.add('open');
+    body.classList.remove('shut');
+    body.classList.add('opened');
+    setTimeout(function(){
+      shelf.classList.add('gone');
+      document.getElementById('start').setAttribute('tabindex','-1');
+      document.getElementById('start').focus({preventScroll:true});
+    }, calm ? 0 : 900);
+  }
+
+  btn.addEventListener('click', open);
+  shelf.addEventListener('click', function(e){ if(e.target===shelf) open(); });
+  window.addEventListener('keydown', function(e){
+    if(!body.classList.contains('opened') && (e.key==='Enter'||e.key===' '||e.key==='Escape')){
+      e.preventDefault(); open();
     }
-  </script>
+  });
+  // anyone who scrolls or arrives at an anchor has already decided
+  window.addEventListener('wheel', open, {passive:true, once:true});
+  window.addEventListener('touchmove', open, {passive:true, once:true});
+  if(location.hash) open();
+  if(calm) open();
+})();
+</script>
 </body>
 </html>
